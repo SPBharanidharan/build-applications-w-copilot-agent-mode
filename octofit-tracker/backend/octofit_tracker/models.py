@@ -27,38 +27,4 @@ class LeaderboardEntry(djongo_models.Model):
     user = djongo_models.ForeignKey(User, on_delete=djongo_models.CASCADE)
     score = djongo_models.IntegerField(default=0)
 
-class Team(models.Model):
-    id = models.ObjectIdField(primary_key=True, editable=False)
-    name = models.CharField(max_length=100)
-    def __str__(self):
-        return self.name
 
-class User(models.Model):
-    id = models.ObjectIdField(primary_key=True, editable=False)
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, to_field='id')
-    def __str__(self):
-        return self.name
-
-class Activity(models.Model):
-    id = models.ObjectIdField(primary_key=True, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
-    type = models.CharField(max_length=100)
-    duration = models.IntegerField()
-    def __str__(self):
-        return f"{self.user.name} - {self.type}"
-
-class Workout(models.Model):
-    id = models.ObjectIdField(primary_key=True, editable=False)
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    def __str__(self):
-        return self.name
-
-class Leaderboard(models.Model):
-    id = models.ObjectIdField(primary_key=True, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
-    points = models.IntegerField()
-    def __str__(self):
-        return f"{self.user.name} - {self.points}"
