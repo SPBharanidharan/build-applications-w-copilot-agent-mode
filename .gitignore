@@ -32,3 +32,4 @@ yarn-error.log*
 *.pyc
 __pycache__/
 octofit-tracker/backend/venv/
+octofit-tracker/backend/db.sqlite3
